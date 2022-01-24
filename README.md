@@ -9,4 +9,8 @@ I'm currently coding in **JavaScript**.
 
 ### [Discord Server](https://discord.gg/P3hZYQ6tWR)
 
-<a href="https://discord.gg/milrato"><img src="https://discord.com/api/guilds/841650708608581654/widget.png?style=banner2"></a>
+<a href="https://discord.gg/P3hZYQ6tWR"><img src="https://discord.com/api/guilds/841650708608581654/widget.png?style=banner2"></a>
+
+### Support Me
+> You can support me by inviting my [**own Discord Bot**](https://discord.com/oauth2/authorize?client_id=878349344737222696&permissions=8&scope=bot)
+
