@@ -9,4 +9,4 @@ I'm currently coding in **JavaScript**.
 
 ### [Discord Server](https://discord.gg/P3hZYQ6tWR)
 
-<a href=""><img src="https://discord.com/widget?id=841650708608581654&theme=dark"></a>
+<a href="https://discord.gg/milrato"><img src="https://discord.com/api/guilds/841650708608581654/widget.png?style=banner2"></a>
