@@ -7,7 +7,7 @@
 
 - I'm currently working on a [**Multi Function Discord Bot**](https://discord.com/oauth2/authorize?client_id=878349344737222696&permissions=8&scope=bot) and a [**Discord Bot List!**](https://discordbotlist.devfrozen.repl.co)
 
-- I'm using **JavaScript**, **HTML**, **CSS**.
+- I'm using mainly **JavaScript** but im learning **Java** at the moment..
 
 
 ## [Discord Server](https://discord.gg/P3hZYQ6tWR)
