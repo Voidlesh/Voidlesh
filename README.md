@@ -1,7 +1,7 @@
-![Banner](https://user-images.githubusercontent.com/98331236/150813403-998e42f5-03f3-4267-ad86-84219dafd978.png)
 
 
-## I'm Void, a Discord Bot Developer.
+
+## I'm Void, a Hobby Developer.
 
 - I love coding Discord Bots, I also love helping! So if you have a question, DM me: `Voidleshᵈᵉᵛ#0147`
 
