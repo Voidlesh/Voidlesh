@@ -3,7 +3,7 @@
 
 ## I'm Void, a Hobby Developer.
 
-- I love coding Discord Bots, I also love helping! So if you have a question, DM me: `Voidleshᵈᵉᵛ#0147`
+- I love coding Discord Bots, I also love helping! So if you have a question, DM me: `voidlesh`
 
 - I'm currently working on a [**Multi Function Discord Bot**](https://discord.com/oauth2/authorize?client_id=878349344737222696&permissions=8&scope=bot) and a [**Discord Bot List!**](https://discordbotlist.devfrozen.repl.co)
 
