@@ -95,8 +95,7 @@ function render(calendar, theme) {
     </linearGradient>
   </defs>
   <g font-family="${FONT}">
-    <text x="${PAD.left}" y="26" font-size="15" font-weight="600" fill="${theme.title}">Activity</text>
-    <text x="${WIDTH - PAD.right}" y="26" font-size="13" text-anchor="end" fill="${theme.muted}">${total} contributions · last 12 months</text>
+    <text x="${PAD.left}" y="26" font-size="14" fill="${theme.muted}"><tspan font-weight="600" fill="${theme.title}">${total}</tspan> contributions in the last 12 months</text>
     <line x1="${PAD.left}" y1="${baseline}" x2="${WIDTH - PAD.right}" y2="${baseline}" stroke="${theme.grid}" stroke-width="1"/>
     <path d="${area}" fill="url(#fill)"/>
     <path d="${line}" fill="none" stroke="${theme.line}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
