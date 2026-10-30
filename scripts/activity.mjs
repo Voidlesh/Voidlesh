@@ -6,6 +6,7 @@ const USERNAME = process.argv[2] ?? "Voidlesh";
 const TOKEN = process.env.GITHUB_TOKEN;
 const OUT_DIR = "assets";
 
+const DAYS = 91;
 const WIDTH = 840;
 const HEIGHT = 220;
 const PAD = { top: 52, right: 24, bottom: 34, left: 24 };
@@ -40,11 +41,11 @@ async function fetchCalendar() {
   return json.data.user.contributionsCollection.contributionCalendar;
 }
 
-function toWeeks(calendar) {
-  return calendar.weeks.map((week) => ({
-    start: new Date(week.contributionDays[0].date),
-    count: week.contributionDays.reduce((sum, day) => sum + day.contributionCount, 0),
-  }));
+function lastDays(calendar) {
+  return calendar.weeks
+    .flatMap((week) => week.contributionDays)
+    .slice(-DAYS)
+    .map((day) => ({ start: new Date(day.date), count: day.contributionCount }));
 }
 
 // Catmull-Rom spline converted to cubic Béziers, clamped so the curve never dips below the baseline.
@@ -62,32 +63,32 @@ function smoothPath(points, baseline) {
   }, "");
 }
 
-function monthLabels(weeks, xAt) {
-  return weeks
-    .map((week, i) => ({ week, i }))
-    .filter(({ week, i }) => i > 0 && week.start.getMonth() !== weeks[i - 1].start.getMonth())
-    .filter(({ i }) => i < weeks.length - 2)
-    .map(({ week, i }) => ({ x: xAt(i), label: MONTHS[week.start.getMonth()] }));
+function monthLabels(days, xAt) {
+  return days
+    .map((day, i) => ({ day, i }))
+    .filter(({ day, i }) => i > 0 && day.start.getMonth() !== days[i - 1].start.getMonth())
+    .filter(({ i }) => i < days.length - 2)
+    .map(({ day, i }) => ({ x: xAt(i), label: MONTHS[day.start.getMonth()] }));
 }
 
 function render(calendar, theme) {
-  const weeks = toWeeks(calendar);
-  const max = Math.max(1, ...weeks.map((w) => w.count));
+  const days = lastDays(calendar);
+  const max = Math.max(1, ...days.map((d) => d.count));
   const chartW = WIDTH - PAD.left - PAD.right;
   const chartH = HEIGHT - PAD.top - PAD.bottom;
   const baseline = PAD.top + chartH;
-  const xAt = (i) => PAD.left + (i / (weeks.length - 1)) * chartW;
+  const xAt = (i) => PAD.left + (i / (days.length - 1)) * chartW;
   const yAt = (count) => baseline - (count / max) * chartH;
 
-  const points = weeks.map((w, i) => ({ x: xAt(i), y: yAt(w.count) }));
+  const points = days.map((d, i) => ({ x: xAt(i), y: yAt(d.count) }));
   const line = smoothPath(points, baseline);
-  const area = `${line} L${xAt(weeks.length - 1)},${baseline} L${PAD.left},${baseline} Z`;
-  const total = calendar.totalContributions.toLocaleString("en-US");
-  const labels = monthLabels(weeks, xAt)
+  const area = `${line} L${xAt(days.length - 1)},${baseline} L${PAD.left},${baseline} Z`;
+  const total = days.reduce((sum, day) => sum + day.count, 0).toLocaleString("en-US");
+  const labels = monthLabels(days, xAt)
     .map(({ x, label }) => `<text x="${x.toFixed(1)}" y="${HEIGHT - 10}" text-anchor="middle">${label}</text>`)
     .join("");
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}" viewBox="0 0 ${WIDTH} ${HEIGHT}" role="img" aria-label="${total} contributions in the last year">
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}" viewBox="0 0 ${WIDTH} ${HEIGHT}" role="img" aria-label="${total} contributions in the last 3 months">
   <defs>
     <linearGradient id="fill" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="${theme.area}" stop-opacity="0.22"/>
@@ -95,7 +96,7 @@ function render(calendar, theme) {
     </linearGradient>
   </defs>
   <g font-family="${FONT}">
-    <text x="${PAD.left}" y="26" font-size="14" fill="${theme.muted}"><tspan font-weight="600" fill="${theme.title}">${total}</tspan> contributions in the last 12 months</text>
+    <text x="${PAD.left}" y="26" font-size="14" fill="${theme.muted}"><tspan font-weight="600" fill="${theme.title}">${total}</tspan> contributions in the last 3 months</text>
     <line x1="${PAD.left}" y1="${baseline}" x2="${WIDTH - PAD.right}" y2="${baseline}" stroke="${theme.grid}" stroke-width="1"/>
     <path d="${area}" fill="url(#fill)"/>
     <path d="${line}" fill="none" stroke="${theme.line}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
