@@ -109,6 +109,6 @@ function render(calendar, theme) {
 const calendar = await fetchCalendar();
 mkdirSync(OUT_DIR, { recursive: true });
 for (const [name, theme] of Object.entries(THEMES)) {
-  writeFileSync(`${OUT_DIR}/activity-${name}.svg`, render(calendar, theme));
+  writeFileSync(`${OUT_DIR}/activity-3m-${name}.svg`, render(calendar, theme));
 }
 console.log(`Rendered activity chart: ${calendar.totalContributions} contributions`);

@@ -27,10 +27,6 @@ Most of my work lives in private repos, but here's a glimpse.
 #### Activity
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/activity-dark.svg">
-  <img alt="Daily contributions over the last 3 months" src="assets/activity-light.svg" width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/activity-3m-dark.svg">
+  <img alt="Daily contributions over the last 3 months" src="assets/activity-3m-light.svg" width="100%">
 </picture>
-
-<div align="center">
-  <img src="https://streak-stats.demolab.com/?user=Voidlesh&theme=tokyonight&hide_border=true" alt="Contribution streak" />
-</div>
